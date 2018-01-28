@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>List of R pacakge on github</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="header">
+            <h1>Search R pacakge on github</h1>
+        </div>
+        <div id="search">
+            <input v-model="message" placeholder="search R package" @keyup="search">
+        </div>
+        <div id="search_rpkgs">
+            <h2>Search results are limited to 100 packages.</h2>
+            <ul id="rpkgs">
+                <li v-for="rpkg in rpkgs">
+                    <a href="{{ rpkg.url }}">{{ rpkg.pkg_name }}</a>: {{ rpkg.title }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+    <p>
+        Created by
+        <a href="https://ja-jp.facebook.com/atsushi.hayakawa.0715">Atsushi Hayakawa</a>, twitter :
+        <a href="https://twitter.com/gepuro">@gepuro</a>
+    </p>
+    <p>
+        Powerd by <a href="http://rpkg-api.gepuro.net">http://rpkg-api.gepuro.net</a>
+    </p>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '',
+                rpkgs: []
+            },
+            methods: {
+                search: function () {
+                    url = 'http://rpkg-api.gepuro.net/rpkg?_limit=100&q=' + this.message
+                    axios.get(url).then(response => { this.rpkgs = response.data })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
