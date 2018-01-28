@@ -2,8 +2,11 @@
 
 <head>
     <title>Search R pacakge on github</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js" async></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,7 +20,7 @@
         <div id="search_rpkgs">
             <h2>Search results are limited to 100 packages.</h2>
             <ul id="rpkgs">
-                <li v-for="rpkg in rpkgs">
+                <li v-for="rpkg in rpkgs" v-cloak>
                     <a href="{{ rpkg.url }}">{{ rpkg.pkg_name }}</a>: {{ rpkg.title }}
                 </li>
             </ul>
@@ -31,9 +34,12 @@
         <a href="https://twitter.com/gepuro">@gepuro</a>
     </p>
     <p>
-        Powerd by <a href="http://rpkg-api.gepuro.net">http://rpkg-api.gepuro.net</a>
+        Powerd by
+        <a href="http://rpkg-api.gepuro.net">http://rpkg-api.gepuro.net</a>
     </p>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         var app = new Vue({
             el: '#app',
