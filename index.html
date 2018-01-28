@@ -43,7 +43,7 @@
             },
             methods: {
                 search: function () {
-                    url = 'http://rpkg-api.gepuro.net/rpkg?_limit=100&q=' + this.message
+                    url = 'https://rpkg-api.gepuro.net/rpkg?_limit=100&q=' + this.message
                     axios.get(url).then(response => { this.rpkgs = response.data })
                 }
             }
